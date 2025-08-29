@@ -60,7 +60,11 @@ const mockFirebase = {
     await new Promise(resolve => setTimeout(resolve, 500));
     // In real implementation, this would be:
     const snapshot = await getDocs(collection(db, firebaseName));
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    // return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return snapshot.docs.map(
+      doc => ({ id: doc.id, ...doc.data() } as Expense)
+    )
+
     
     // For now, return sample data or localStorage fallback
     // const stored = JSON.parse(localStorage.getItem('firebase_expenses') || '[]');
